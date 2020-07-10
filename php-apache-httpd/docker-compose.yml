@@ -13,4 +13,4 @@ services:
     build:
       context: ./.docker/php-fpm/build
     volumes:
-      - '.:/var/www/html'
+      - '.:/var/www/html:ro'
