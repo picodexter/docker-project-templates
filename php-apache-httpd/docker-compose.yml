@@ -3,7 +3,7 @@ version: '3.8'
 services:
   httpd:
     build:
-      context: ./.docker/httpd/image
+      context: ./.docker/httpd/build
     ports:
       - '8080:80'
     volumes:
