@@ -10,6 +10,7 @@ services:
       - '.:/var/www/html:ro'
       - './.docker/httpd/config/extra/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf:ro'
   php-fpm:
-    image: php:7.4-fpm
+    build:
+      context: ./.docker/php-fpm/build
     volumes:
       - '.:/var/www/html'
