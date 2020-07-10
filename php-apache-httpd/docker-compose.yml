@@ -16,3 +16,4 @@ services:
       - '.:/var/www/html:ro'
       - './.docker/php-fpm/config/z90-xdebug.ini:/usr/local/etc/php/conf.d/z90-xdebug.ini:ro'
       - './.xdebug-profiler:/var/www/html/.xdebug-profiler:rw'
+      - './var:/var/www/html/var:rw'
