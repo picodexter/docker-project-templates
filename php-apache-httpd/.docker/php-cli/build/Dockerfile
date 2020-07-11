@@ -31,6 +31,10 @@ RUN echo '[X] START OF CUSTOMIZATION BUILD' \
         && echo '   [-] Deleting PHIVE PHAR file signature ...' \
         && rm /tmp/phive.phar.asc \
     && echo '[o] Finished installing PHIVE.' \
+    && echo '[-] Installing unsigned PHIVE package phpmd/phpmd ...' \
+    && phive install -g --force-accept-unsigned phpmd/phpmd \
+    && echo '[-] Installing PHIVE packages friendsofphp/php-cs-fixer, phploc, phpstan/phpstan ...' \
+    && phive install -g --trust-gpg-keys 0xE82B2FB314E9906E,0x4AA394086372C20A,0xCF1A108D0E7AE720 friendsofphp/php-cs-fixer phploc phpstan/phpstan \
     && echo '[-] Clearing Aptitude package cache ...' \
     && rm -rf /var/lib/apt/lists/* \
     && echo '[X] END OF CUSTOMIZATION BUILD'
