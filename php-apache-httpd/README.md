@@ -17,6 +17,7 @@ Basic assumptions:
     -   Loaded modules:
         -   proxy
         -   proxy_fcgi
+        -   rewrite
 -   php-fpm - PHP FPM application server
     -   Loaded extensions:
         -   pdo_mysql
