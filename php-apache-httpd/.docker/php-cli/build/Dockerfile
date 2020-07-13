@@ -2,6 +2,8 @@ FROM php:7.4-fpm
 
 ENV PHP_IDE_CONFIG="serverName=Project Server"
 
+COPY phive.gpg /tmp/phive.gpg
+
 RUN echo '[X] START OF CUSTOMIZATION BUILD' \
     && echo '[-] Updating Aptitude package cache ...' \
     && apt-get update \
@@ -21,15 +23,15 @@ RUN echo '[X] START OF CUSTOMIZATION BUILD' \
         && echo '   [-] Downloading PHIVE PHAR file signature ...' \
         && curl -Lo /tmp/phive.phar.asc https://phar.io/releases/phive.phar.asc \
         && echo '   [-] Fetching PHIVE GPG public key ...' \
-        && gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79 \
+        && gpg --import /tmp/phive.gpg \
         && echo '   [-] Verifying PHIVE PHAR file signature ...' \
         && gpg --verify /tmp/phive.phar.asc /tmp/phive.phar \
         && echo '   [-] Setting PHIVE PHAR file as executable for everyone ...' \
         && chmod +x /tmp/phive.phar \
         && echo '   [-] Move PHIVE PHAR file to /usr/local/bin/ ...' \
         && mv /tmp/phive.phar /usr/local/bin/phive \
-        && echo '   [-] Deleting PHIVE PHAR file signature ...' \
-        && rm /tmp/phive.phar.asc \
+        && echo '   [-] Deleting temporary files ...' \
+        && rm /tmp/phive.* \
     && echo '[o] Finished installing PHIVE.' \
     && echo '[-] Installing unsigned PHIVE package phpmd/phpmd ...' \
     && phive install -g --force-accept-unsigned phpmd/phpmd \
