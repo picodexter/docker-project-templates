@@ -6,5 +6,5 @@ services:
       context: ./.docker/php-cli/build
     volumes:
       - '.:/var/www/html:rw'
-      - './.docker/php-fpm/config/z10-xdebug.ini:/usr/local/etc/php/conf.d/z10-xdebug.ini:ro'
+      - './.docker/php-cli/config/z10-xdebug.ini:/usr/local/etc/php/conf.d/z10-xdebug.ini:ro'
       - './.docker/php-cli/config/z91-sapi.ini:/usr/local/etc/php/conf.d/z91-sapi.ini:ro'
