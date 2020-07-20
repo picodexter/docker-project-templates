@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 
-ENV PHP_IDE_CONFIG="serverName=Project Server"
+ENV PHP_IDE_CONFIG serverName=Project Server
 
 COPY phive.gpg /tmp/phive.gpg
 
