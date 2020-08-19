@@ -1,5 +1,6 @@
 FROM php:7.4-fpm
 
+ENV PATH /root/.composer/vendor/bin:${PATH}
 ENV PHP_IDE_CONFIG serverName=Project Server
 
 COPY phive.gpg /tmp/phive.gpg
@@ -17,6 +18,8 @@ RUN echo '[X] START OF CUSTOMIZATION BUILD' \
     && docker-php-ext-enable xdebug \
     && echo '[-] Installing Composer ...' \
     && (php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer) \
+    && echo '[-] Installing global Composer dependency PHPStan with extensions ...' \
+    && composer global require phpstan/extension-installer phpstan/phpstan-phpunit \
     && echo '[o] Installing PHIVE ...' \
         && echo '   [-] Downloading PHIVE PHAR file ...' \
         && curl -Lo /tmp/phive.phar https://phar.io/releases/phive.phar \
@@ -36,7 +39,7 @@ RUN echo '[X] START OF CUSTOMIZATION BUILD' \
     && echo '[-] Installing unsigned PHIVE package phpmd/phpmd ...' \
     && phive install -g --force-accept-unsigned phpmd/phpmd \
     && echo '[-] Installing PHIVE packages friendsofphp/php-cs-fixer, phploc, phpstan/phpstan ...' \
-    && phive install -g --trust-gpg-keys 0xE82B2FB314E9906E,0x4AA394086372C20A,0xCF1A108D0E7AE720 friendsofphp/php-cs-fixer phploc phpstan/phpstan \
+    && phive install -g --trust-gpg-keys 0xE82B2FB314E9906E,0x4AA394086372C20A friendsofphp/php-cs-fixer phploc \
     && echo '[-] Clearing Aptitude package cache ...' \
     && rm -rf /var/lib/apt/lists/* \
     && echo '[X] END OF CUSTOMIZATION BUILD'
