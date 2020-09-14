@@ -15,5 +15,6 @@ services:
     volumes:
       - '.:/var/www/html:ro'
       - './.docker/php-fpm/config/z10-xdebug.ini:/usr/local/etc/php/conf.d/z10-xdebug.ini:ro'
+      - './.docker/php-fpm/config/z30-sapi.ini:/usr/local/etc/php/conf.d/z30-sapi.ini:ro'
       - './.xdebug-profiler:/var/www/html/.xdebug-profiler:rw'
       - './var:/var/www/html/var:rw'
