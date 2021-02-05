@@ -8,8 +8,8 @@ COPY phive.gpg /tmp/phive.gpg
 RUN echo '[X] START OF CUSTOMIZATION BUILD' \
     && echo '[-] Updating Aptitude package cache ...' \
     && apt-get update \
-    && echo '[-] Installing system packages gpg, unzip ...' \
-    && apt-get install -y gpg unzip \
+    && echo '[-] Installing system packages git, gpg, unzip ...' \
+    && apt-get install -y git gpg unzip \
     && echo '[-] Installing PHP PECL extension xdebug ...' \
     && pecl install xdebug \
     && echo '[-] Installing PHP extension pdo_mysql ...' \
