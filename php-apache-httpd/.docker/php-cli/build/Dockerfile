@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 ENV PATH /root/.composer/vendor/bin:${PATH}
 ENV PHP_IDE_CONFIG serverName=Project Server

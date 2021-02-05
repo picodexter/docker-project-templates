@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 RUN echo '[X] START OF CUSTOMIZATION BUILD' \
     && echo '[-] Installing PHP PECL extension xdebug ...' \
